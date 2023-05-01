@@ -33,15 +33,17 @@ const Calculator = () => {
   };
 
   const handleNumClick = (num) => {
-    if (num2 === 0) {
-      setNum2(num);
+    if (currentValue === "0" && num !== ".") {
       setCurrentValue(num.toString());
+      setNum2(parseFloat(num));
+    } else if (currentValue.includes(".") && num === ".") {
+      // do nothing if decimal already exists
+      return;
     } else {
-      setNum2(parseInt(num2.toString() + num.toString()));
-      setCurrentValue(parseInt(num2.toString() + num.toString()).toString());
+      setCurrentValue((prevValue) => prevValue.toString() + num.toString());
+      setNum2(parseFloat(currentValue.toString() + num.toString()));
     }
   };
-
   const handleClear = () => {
     const newValue = currentValue.slice(0, -1) || "0";
     setCurrentValue(newValue);
