@@ -3,70 +3,83 @@ import React, { useState } from "react";
 const Calculator = () => {
   const [result, setResult] = useState(0);
   const [num1, setNum1] = useState(0);
-  const [num2, setNum2] = useState(0);
+  const [operator, setOperator] = useState(null);
   const [currentValue, setCurrentValue] = useState("0");
 
-  const handleNum1Change = (e) => setNum1(Number(e.target.value));
-  const handleNum2Change = (e) => setNum2(Number(e.target.value));
+  const handleNum1Change = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setNum1(Number(e.target.value));
 
-  const calculate = (operator) => {
+  const calculate = () => {
+    const result = operate(operator, num1, Number(currentValue));
+    setResult(result);
+  };
+
+  const add = (a: number, b: number) => a + b;
+  const subtract = (a: number, b: number) => a - b;
+  const multiply = (a: number, b: number) => a * b;
+  const divide = (a: number, b: number) => a / b;
+
+  const operate = (operator: string, a: number, b: number) => {
     switch (operator) {
       case "+":
-        setResult(num1 + num2);
-        break;
+        return add(a, b);
       case "-":
-        setResult(num1 - num2);
-        break;
+        return subtract(a, b);
       case "*":
-        setResult(num1 * num2);
-        break;
+        return multiply(a, b);
       case "/":
-        setResult(num1 / num2);
-        break;
-      case "**": // Exponent functionality
-        setResult(num1 ** num2);
-        break;
+        if (b === 0) {
+          return "Error: Divide by 0";
+        } else {
+          return divide(a, b);
+        }
       default:
-        setResult(0);
-        break;
+        return "Error: Invalid operator";
     }
   };
 
   const handleNumClick = (num) => {
     if (currentValue === "0" && num !== ".") {
       setCurrentValue(num.toString());
-      setNum2(parseFloat(num));
     } else if (currentValue.includes(".") && num === ".") {
       // do nothing if decimal already exists
       return;
     } else {
       setCurrentValue((prevValue) => prevValue.toString() + num.toString());
-      setNum2(parseFloat(currentValue.toString() + num.toString()));
     }
   };
+
+  const handleEqualsClick = () => {
+    calculate();
+    setOperator(null);
+  };
+
+  const handleOperatorClick = (operator) => {
+    setOperator(operator);
+    setNum1(Number(currentValue));
+    setCurrentValue("0");
+  };
+
   const handleClear = () => {
     const newValue = currentValue.slice(0, -1) || "0";
     setCurrentValue(newValue);
-    setNum2(parseInt(newValue) || 0);
   };
 
   const handleAllClear = () => {
     setCurrentValue("0");
     setNum1(0);
-    setNum2(0);
     setResult(0);
+    setOperator(null);
   };
 
   const handlePercent = () => {
-    const newValue = (num2 / 100) * num1;
-    setNum2(newValue);
+    const newValue = (Number(currentValue) / 100) * num1;
     setCurrentValue(newValue.toString());
   };
 
   const handleSignChange = () => {
-    const newNum2 = num2 * -1;
-    setNum2(newNum2);
-    setCurrentValue(newNum2.toString());
+    const newNum = Number(currentValue) * -1;
+    setCurrentValue(newNum.toString());
   };
 
   return (
@@ -79,16 +92,7 @@ const Calculator = () => {
             placeholder="0"
             className="w-full p-2 border rounded-lg"
             onChange={handleNum1Change}
-            value={num1}
-          />
-        </div>
-        <div className="my-2">
-          <input
-            type="number"
-            placeholder="0"
-            className="w-full p-2 border rounded-lg"
-            onChange={handleNum2Change}
-            value={num2}
+            value={currentValue}
           />
         </div>
         <div className="my-2">
@@ -160,7 +164,7 @@ const Calculator = () => {
             </button>
             <button
               className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
-              onClick={() => calculate("/")}
+              onClick={() => handleOperatorClick("/")}
             >
               /
             </button>
@@ -186,7 +190,7 @@ const Calculator = () => {
             </button>
             <button
               className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
-              onClick={() => calculate("*")}
+              onClick={() => handleOperatorClick("*")}
             >
               *
             </button>
@@ -212,7 +216,7 @@ const Calculator = () => {
             </button>
             <button
               className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
-              onClick={() => calculate("-")}
+              onClick={() => handleOperatorClick("-")}
             >
               -
             </button>
@@ -232,13 +236,13 @@ const Calculator = () => {
             </button>
             <button
               className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
-              onClick={() => handleNumClick("=")}
+              onClick={() => handleEqualsClick()}
             >
               =
             </button>
             <button
               className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
-              onClick={() => calculate("+")}
+              onClick={() => handleOperatorClick("+")}
             >
               +
             </button>
