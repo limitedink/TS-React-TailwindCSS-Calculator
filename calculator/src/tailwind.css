@@ -6,7 +6,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.my-custom-style {
-  color: #0066cc;
-  font-size: 20px;
+body {
+  background-color: #f5f5f7;
 }
