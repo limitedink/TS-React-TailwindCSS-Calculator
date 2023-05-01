@@ -91,19 +91,19 @@ const Calculator = () => {
         <div className="my-2">
           <div className="flex justify-between">
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-gray-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded"
               onClick={() => handleAllClear()}
             >
               AC
             </button>
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-gray-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded"
               onClick={() => handleClear()}
             >
               C
             </button>
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-gray-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded"
               onClick={() => handlePercent()}
             >
               %
@@ -113,47 +113,47 @@ const Calculator = () => {
         <div className="my-2">
           <div className="flex justify-between">
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-gray-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded"
+              onClick={() => handleNumClick("+/-")}
+            >
+              +/-
+            </button>
+            <button
+              className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
               onClick={() => handleNumClick("MOD")}
             >
               MOD
             </button>
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
               onClick={() => calculate("**")}
             >
               ^
-            </button>
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              onClick={() => handleNumClick("+/-")}
-            >
-              +/-
             </button>
           </div>
         </div>
         <div className="my-2">
           <div className="flex justify-between">
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded"
               onClick={() => handleNumClick(7)}
             >
               7
             </button>
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded"
               onClick={() => handleNumClick(8)}
             >
               8
             </button>
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded"
               onClick={() => handleNumClick(9)}
             >
               9
             </button>
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
               onClick={() => calculate("/")}
             >
               /
@@ -161,25 +161,25 @@ const Calculator = () => {
           </div>
           <div className="flex justify-between">
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded"
               onClick={() => handleNumClick(4)}
             >
               4
             </button>
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded"
               onClick={() => handleNumClick(5)}
             >
               5
             </button>
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded"
               onClick={() => handleNumClick(6)}
             >
               6
             </button>
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
               onClick={() => calculate("*")}
             >
               *
@@ -187,25 +187,25 @@ const Calculator = () => {
           </div>
           <div className="flex justify-between">
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded"
               onClick={() => handleNumClick(1)}
             >
               1
             </button>
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded"
               onClick={() => handleNumClick(2)}
             >
               2
             </button>
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded"
               onClick={() => handleNumClick(3)}
             >
               3
             </button>
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
               onClick={() => calculate("-")}
             >
               -
@@ -213,25 +213,25 @@ const Calculator = () => {
           </div>
           <div className="flex justify-between">
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded"
               onClick={() => handleNumClick(0)}
             >
               0
             </button>
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded"
               onClick={() => handleNumClick(".")}
             >
               .
             </button>
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
               onClick={() => handleNumClick("=")}
             >
               =
             </button>
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
               onClick={() => calculate("+")}
             >
               +
