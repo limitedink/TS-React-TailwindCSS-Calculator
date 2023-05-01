@@ -63,6 +63,12 @@ const Calculator = () => {
     setCurrentValue(newValue.toString());
   };
 
+  const handleSignChange = () => {
+    const newNum2 = num2 * -1;
+    setNum2(newNum2);
+    setCurrentValue(newNum2.toString());
+  };
+
   return (
     <div className="w-64 m-auto">
       <h1 className="text-center my-6 text-3xl font-bold">C4LC Y@ L8R</h1>
@@ -114,7 +120,7 @@ const Calculator = () => {
           <div className="flex justify-between">
             <button
               className="bg-gray-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded"
-              onClick={() => handleNumClick("+/-")}
+              onClick={handleSignChange}
             >
               +/-
             </button>
