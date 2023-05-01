@@ -22,16 +22,16 @@ const Calculator = () => {
   const operate = (operator: string, a: number, b: number) => {
     switch (operator) {
       case "+":
-        return add(a, b);
+        return add(a, b).toFixed(3);
       case "-":
-        return subtract(a, b);
+        return subtract(a, b).toFixed(3);
       case "*":
-        return multiply(a, b);
+        return multiply(a, b).toFixed(3);
       case "/":
         if (b === 0) {
           return "Error: Divide by 0";
         } else {
-          return divide(a, b);
+          return divide(a, b).toFixed(3);
         }
       default:
         return "Error: Invalid operator";
