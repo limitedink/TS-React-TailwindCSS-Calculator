@@ -18,6 +18,8 @@ const Calculator = () => {
   const subtract = (a: number, b: number) => a - b;
   const multiply = (a: number, b: number) => a * b;
   const divide = (a: number, b: number) => a / b;
+  const modulus = (a: number, b: number) => a % b;
+  const exponent = (a: number, b: number) => Math.pow(a, b);
 
   const operate = (operator: string, a: number, b: number) => {
     switch (operator) {
@@ -33,6 +35,10 @@ const Calculator = () => {
         } else {
           return divide(a, b).toFixed(3);
         }
+      case "%":
+        return modulus(a, b).toFixed(3);
+      case "**":
+        return exponent(a, b).toFixed(3);
       default:
         return "Error: Invalid operator";
     }
@@ -130,13 +136,13 @@ const Calculator = () => {
             </button>
             <button
               className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
-              onClick={() => handleNumClick("MOD")}
+              onClick={() => handleOperatorClick("%")}
             >
               MOD
             </button>
             <button
               className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"
-              onClick={() => calculate("**")}
+              onClick={() => handleOperatorClick("**")}
             >
               ^
             </button>
