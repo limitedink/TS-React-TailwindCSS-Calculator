@@ -10,8 +10,24 @@ const Calculator = () => {
     setNum1(Number(e.target.value));
 
   const calculate = () => {
-    const result = operate(operator, num1, Number(currentValue));
-    setResult(result);
+    if (!operator) {
+      setResult(Number(currentValue));
+      return;
+    }
+
+    let newResult = 0;
+
+    if (num1 !== 0) {
+      newResult = operate(operator, num1, Number(currentValue));
+      setNum1(newResult);
+    } else {
+      newResult = Number(currentValue);
+      setNum1(newResult);
+    }
+
+    setResult(newResult);
+    setCurrentValue(newResult.toString());
+    setOperator(null);
   };
 
   const add = (a: number, b: number) => a + b;
@@ -56,11 +72,17 @@ const Calculator = () => {
   };
 
   const handleEqualsClick = () => {
-    calculate();
-    setOperator(null);
+    if (operator && currentValue !== "") {
+      calculate();
+    } else {
+      setResult(num1);
+    }
   };
 
   const handleOperatorClick = (operator) => {
+    if (num1 !== 0 && operator) {
+      calculate();
+    }
     setOperator(operator);
     setNum1(Number(currentValue));
     setCurrentValue("0");
@@ -78,13 +100,13 @@ const Calculator = () => {
     setOperator(null);
   };
 
-  const handlePercent = () => {
-    const newValue = (Number(currentValue) / 100) * num1;
-    setCurrentValue(newValue.toString());
-  };
-
   const handleSignChange = () => {
     const newNum = Number(currentValue) * -1;
+    setCurrentValue(newNum.toString());
+  };
+
+  const handlePercentage = () => {
+    const newNum = Number(currentValue) / 100;
     setCurrentValue(newNum.toString());
   };
 
@@ -120,7 +142,7 @@ const Calculator = () => {
             </button>
             <button
               className="bg-gray-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded"
-              onClick={() => handlePercent()}
+              onClick={() => handlePercentage()}
             >
               %
             </button>

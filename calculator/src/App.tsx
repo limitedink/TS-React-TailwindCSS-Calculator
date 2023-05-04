@@ -1,6 +1,5 @@
-import React, { useState } from "react";
 import "tailwindcss/tailwind.css";
-import Calculator from "./calculator";
+import Calculator from "./calculator.tsx";
 
 function App() {
   return (
