@@ -1,11 +1,14 @@
 import "tailwindcss/tailwind.css";
 import Calculator from "./calculator.tsx";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import Footer from "./Footer";
 
 function App() {
   return (
-    <div className="App">
+    <main className="App">
       <Calculator />
-    </div>
+      <Footer />
+    </main>
   );
 }
 

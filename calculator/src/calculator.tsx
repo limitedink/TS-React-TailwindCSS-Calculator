@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const Calculator = () => {
   const [result, setResult] = useState(0);
   const [num1, setNum1] = useState(0);
-  const [operator, setOperator] = useState(null);
+  const [operator, setOperator] = useState<string | null>(null);
   const [currentValue, setCurrentValue] = useState("0");
 
   const handleNum1Change = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -18,7 +18,7 @@ const Calculator = () => {
     let newResult = 0;
 
     if (num1 !== 0) {
-      newResult = operate(operator, num1, Number(currentValue));
+      newResult = Number(operate(operator, num1, Number(currentValue)));
       setNum1(newResult);
     } else {
       newResult = Number(currentValue);
@@ -60,14 +60,13 @@ const Calculator = () => {
     }
   };
 
-  const handleNumClick = (num) => {
+  const handleNumClick = (num: string) => {
     if (currentValue === "0" && num !== ".") {
       setCurrentValue(num.toString());
     } else if (currentValue.includes(".") && num === ".") {
-      // do nothing if decimal already exists
-      return;
+      setCurrentValue(currentValue);
     } else {
-      setCurrentValue((prevValue) => prevValue.toString() + num.toString());
+      setCurrentValue(currentValue + num.toString());
     }
   };
 
@@ -79,13 +78,13 @@ const Calculator = () => {
     }
   };
 
-  const handleOperatorClick = (operator) => {
+  const handleOperatorClick = (operator: string) => {
     if (num1 !== 0 && operator) {
       calculate();
     }
-    setOperator(operator);
-    setNum1(Number(currentValue));
-    setCurrentValue("0");
+    setOperator(() => operator);
+    setNum1(parseFloat(currentValue));
+    setCurrentValue("");
   };
 
   const handleClear = () => {
@@ -174,19 +173,19 @@ const Calculator = () => {
           <div className="flex justify-between">
             <button
               className="bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded"
-              onClick={() => handleNumClick(7)}
+              onClick={() => handleNumClick((7).toString())}
             >
               7
             </button>
             <button
               className="bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded"
-              onClick={() => handleNumClick(8)}
+              onClick={() => handleNumClick((8).toString())}
             >
               8
             </button>
             <button
               className="bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded"
-              onClick={() => handleNumClick(9)}
+              onClick={() => handleNumClick((9).toString())}
             >
               9
             </button>
@@ -200,19 +199,19 @@ const Calculator = () => {
           <div className="flex justify-between">
             <button
               className="bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded"
-              onClick={() => handleNumClick(4)}
+              onClick={() => handleNumClick((4).toString())}
             >
               4
             </button>
             <button
               className="bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded"
-              onClick={() => handleNumClick(5)}
+              onClick={() => handleNumClick((5).toString())}
             >
               5
             </button>
             <button
               className="bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded"
-              onClick={() => handleNumClick(6)}
+              onClick={() => handleNumClick((6).toString())}
             >
               6
             </button>
@@ -226,19 +225,19 @@ const Calculator = () => {
           <div className="flex justify-between">
             <button
               className="bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded"
-              onClick={() => handleNumClick(1)}
+              onClick={() => handleNumClick((1).toString())}
             >
               1
             </button>
             <button
               className="bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded"
-              onClick={() => handleNumClick(2)}
+              onClick={() => handleNumClick((2).toString())}
             >
               2
             </button>
             <button
               className="bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded"
-              onClick={() => handleNumClick(3)}
+              onClick={() => handleNumClick((3).toString())}
             >
               3
             </button>
@@ -252,7 +251,7 @@ const Calculator = () => {
           <div className="flex justify-between">
             <button
               className="bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded"
-              onClick={() => handleNumClick(0)}
+              onClick={() => handleNumClick((0).toString())}
             >
               0
             </button>
